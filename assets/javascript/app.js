@@ -1,130 +1,119 @@
-
 $(document).ready(function () {
-    var topicsArr = ["beer", "cats", "Harry Potter", "avocados", "Deadpool", "snowboarding", "hedgehogs", "football"];
 
+    var animalArr = ["alligator", "monkey", "spider"];
+    
+    console.log(animalArr);
 
-    // Function for displaying movie data
-    function renderButtons(array) {
+    function renderButtons() {
         //empty button div
-        $("#buttons-div").empty();
-        
+        $("#button-div").empty();
 
-        topicsArr.forEach(function (topic) {
+        animalArr.forEach(function (animal) {
             var a = $("<button>");
             // Adds a class of movie to our button
-            a.addClass("topic");
+            a.addClass("animal");
             // Added a data-attribute
-            a.attr("data-topic", topic);
+            a.attr("data-animal", animal);
             // Provided the initial button text
             // a.attr("data-state", still)
-            a.text(topic);
+            a.text(animal);
             // Added the button to the buttons-view div
-            $("#buttons-div").append(a);
+            $("#button-div").append(a);
+
         });
     };
-
-    // Calling the renderButtons function to display the initial list of topics
     renderButtons();
 
-    // This function handles events where one button is clicked
-    $("#add-topic").on("click", function (event) {
 
+    $("#add-animal").on("click", function (event) {
         event.preventDefault();
-        var newTopic = $("#topic-input").val();
-        topicsArr.push(newTopic);
-        renderButtons();
-
-    });
-
-    $("#buttons-div").on("click", ".topic", function () {
-        $("#gifs-appear-here").empty();
         
-        // In this case, the "this" keyword refers to the button that was clicked
-        var search = $(this).attr("data-topic");
+        // This line of code will grab the input from the textbox
+        var newAnimal = $("#animal-input").val().trim();
 
-        // Constructing a URL to search Giphy for the name of the person who said the quote
+        // The movie from the textbox is then added to our array
+        animalArr.push(newAnimal);
+
+        // Calling renderButtons which handles the processing of our movie array
+        renderButtons();
+        console.log(animalArr);
+        console.log(newAnimal);
+        
+        
+
+      });
+
+    //    $(document).on("click", ".movie", displayMovieInfo);
+
+    $("#button-div").on("click", "button", function () {
+        $("#gifs-appear-here").empty();
+        event.preventDefault();
+
+        console.log("button clicked");
+        var animal = $(this).attr("data-animal");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            search + "&api_key=dc6zaTOxFJmzC&limit=10";
+            animal + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-
-        // Performing our AJAX GET request
         $.ajax({
             url: queryURL,
             method: "GET"
-        })
-            // After the data comes back from the API
-            .then(function (response) {
-                console.log(response)
-                // Storing an array of results in the results variable
-                var results = response.data;
+        }).then(function (response) {
 
-                // Looping over every result item
-                for (var i = 0; i < results.length; i++) {
+            console.log(response);
 
-                    // Only taking action if the photo has an appropriate rating
-                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                        // Creating a div for the gif
-                        var gifDiv = $("<div>");
-
-                        // Storing the result item's rating
-                        var rating = results[i].rating;
-
-                        // Creating a paragraph tag with the result item's rating
-                        var p = $("<p>").text("Rating: " + rating);
-
-                        // Creating an image tag
-                        var topicImage = $("<img>");
-
-                        // Giving the image tag an src attribute of a proprty pulled off the
-                        // result item
-                        topicImage.addClass("gif");
-                        topicImage.attr("src", results[i].images.fixed_height_still.url);
-                        topicImage.attr("data-still", results[i].images.fixed_height_still.url);
-                        topicImage.attr("data-animate", results[i].images.fixed_height.url);
-                        topicImage.attr("data-state", "still");
-                        
-
-                        // Appending the paragraph and personImage we created to the "gifDiv" div we created
-                        gifDiv.append(p);
-                        gifDiv.append(topicImage);
-
-                        // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-                        $("#gifs-appear-here").prepend(gifDiv);
-                    }
-                }
-            });
+            var results = response.data;
 
 
-        $("#gifs-appear-here").on("click", ".gif", function () {
-            
-            
-            console.log("clicked" + $("img").attr("data-state"));
-            
 
-            // variable to store the image's data-state into it.
-            var state = $(this).attr("data-state");
-            var animateURL = $(this).attr("data-animate");
-            var stillURL = $(this).attr("data-still");
+            for (var i = 0; i < results.length; i++) {
 
-            console.log(state);
+                // Step 3: uncomment the for loop above and the closing curly bracket below.
+                // Make a div with jQuery and store it in a variable named animalDiv.
+                var animalDiv = $("<div>");
+                // Make a paragraph tag with jQuery and store it in a variable named p.
+                var p = $("<p>");
+                // Set the inner text of the paragraph to the rating of the image in results[i].
+                p.text("rating: " + results[i].rating);
+                // Make an image tag with jQuery and store it in a variable named animalImage.
+                var animalImage = $("<img>");
+                // Set the image's src to results[i]'s fixed_height.url.
 
-            // and update the data-state attribute to 'animate'.
-            if (state === "still") {
-                // then update the src attribute of this image to it's data-animate value,
-                $(this).attr("src", animateURL);
-                $(this).attr("data-state", "animate");
-                // console.log("if still");
 
-            } else {
-                $(this).attr("src", stillURL);
-                $(this).attr("data-state", "still");
-                // console.log("if animated");
+                animalImage.addClass("gif");
+                animalImage.attr("src", results[i].images.fixed_height_still.url);
+                animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+                animalImage.attr("data-animate", results[i].images.fixed_height.url);
+                animalImage.attr("data-state", "still");
+                // Append the p variable to the animalDiv variable.
+                animalDiv.append(p);
+                // Append the animalImage variable to the animalDiv variable.
+                animalDiv.append(animalImage)
+                // Prepend the animalDiv variable to the element with an id of gifs-appear-here.
+                $("#gifs-appear-here").prepend(animalDiv);
+
             }
 
-            // STEP FOUR: open the file in the browser and click on the images.
-            // Then click again to pause.
+
         });
+    });
+
+    $("#gifs-appear-here").on('click', '.gif', function () {
+        
+        console.log("clicked");
+
+        var state = $(this).attr("data-state");
+        var animateURL = $(this).attr("data-animate");
+        var stillURL = $(this).attr("data-still");
+
+        if (state === "still") {
+            $(this).attr("src", animateURL);
+            $(this).attr("data-state", "animate");
+
+        } else {
+            $(this).attr("src", stillURL);
+            $(this).attr("data-state", "still");
+        }
 
     });
-});
 
+});

@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>
-        gif-tastic
-    </title>
-
-
+  <meta charset="utf-8">
+  <title>Topics</title>
 </head>
 
 <body>
+  <div id="button-div">
+    <button data-animal="cat">meow</button>
+    <button data-animal="dog">woof</button>
+    <button data-animal="bird">chirp</button>
+  </div>
 
-    <h1>Gif-Tastic</h1>
 
-    <div id="buttons-div">
-        <button data-topic="poop">poop</button>
+  <form id="animal-form">
+      <label for="animal-input">Add an animal, Yo!</label>
+      <input type="text" id="animal-input"><br>
 
-    </div>
-    
-    <form id="topic-form">
-        <label for="topic-input">Add a topic, Yo!</label>
-        <input type="text" id="topic-input"><br>
-
-        <!-- Button triggers new movie to be added -->
-        <input id="add-topic" type="submit" value="Add a topic, Yo!">
+      <!-- Button triggers new movie to be added -->
+      <input id="add-animal" type="submit" value="Add an animal, Yo!">
     </form>
 
-    <div id="gifs-appear-here">
-
-    </div>
-
+  <div id="gifs-appear-here">
+  </div>
 
 
 
@@ -38,26 +32,12 @@
 
 
 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-
-
-   
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-
-        <script src="assets/javascript/app.js"></script>
-
-    
-
+  <script src="assets/javascript/app.js"></script>
+ 
 </body>
 
 </html>
