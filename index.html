@@ -3,41 +3,56 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Topics</title>
+  <title>Nintendo Gif Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-  <div id="button-div">
-    <button data-animal="cat">meow</button>
-    <button data-animal="dog">woof</button>
-    <button data-animal="bird">chirp</button>
+
+  <nav>
+    Nintendo Gif Page
+  </nav>
+  <div class="container button container">
+    <div class="row d-flex">
+      <div id="button-div" class="m-1">
+
+      </div>
+    </div>
+
+  </div>
+  <div class="container main-content">
+
+    <div class="row d-flex m-1 p-1 formDiv justify-content-center">
+      <form id="topic-form">
+
+        <label for="topic-input">Add a button</label>
+        <input type="text" id="topic-input"><br>
+      <div class="row justify-content-center">
+        <!-- Button triggers new movie to be added -->
+        <input id="add-topic" type="submit" value="Add a button">
+      </div>
+      </form>
+    
+    </div>
+    <div class="row d-flex justify-content-around">
+      <div id="gifs-appear-here" class="d-flex justify-content-around flex-wrap">
+      </div>
+    </div>
+
   </div>
 
 
-  <form id="animal-form">
-      <label for="animal-input">Add an animal, Yo!</label>
-      <input type="text" id="animal-input"><br>
-
-      <!-- Button triggers new movie to be added -->
-      <input id="add-animal" type="submit" value="Add an animal, Yo!">
-    </form>
-
-  <div id="gifs-appear-here">
-  </div>
 
 
 
 
-
-
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <script src="assets/javascript/app.js"></script>
- 
+
 </body>
 
 </html>
