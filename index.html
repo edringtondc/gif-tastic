@@ -12,7 +12,7 @@
 <body>
 
   <nav>
-    Nintendo Gif Page
+
   </nav>
   <div class="container button container">
     <div class="row d-flex">
@@ -29,19 +29,37 @@
 
         <label for="topic-input">Add a button</label>
         <input type="text" id="topic-input"><br>
-      <div class="row justify-content-center">
-        <!-- Button triggers new movie to be added -->
-        <input id="add-topic" type="submit" value="Add a button">
-      </div>
+
+
+        <input id="add-topic" class="btn btn-outline-danger" type="submit" value="Add a button">
+
       </form>
-    
+
+
+
     </div>
-    <div class="row d-flex justify-content-around">
-      <div id="gifs-appear-here" class="d-flex justify-content-around flex-wrap">
+    <div class="row">
+      <button type="button" class="btn btn-outline-danger" id="add-ten">Add 10 more</button>
+    </div>
+    <div class="row d-flex">
+      <div class="justify-content-around col-md-8">
+        <div id="gifs-appear-here" class="d-flex justify-content-around flex-wrap">
+        </div>
+      </div>
+
+
+      <div id="favoriteGifs" class="d-flex flex-wrap col-md-4 border-left border-secondary">
+
+        <p>space for fave gifs</p>
+
+
       </div>
     </div>
 
   </div>
+
+
+
 
 
 

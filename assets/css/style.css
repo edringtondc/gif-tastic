@@ -16,6 +16,7 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #88ff7b;
+    max-width: 200px;
     
 }
 
@@ -23,7 +24,10 @@ body {
 
     color: greenyellow:
     
-
 }
 
-
+#favoriteGifs {
+    max-width: 200px;
+    border-left-width: 2px;
+    border-left-color: gray;
+}
