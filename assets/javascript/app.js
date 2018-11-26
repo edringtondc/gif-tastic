@@ -2,7 +2,7 @@ $(document).ready(function () {
     var favesArr = []
     var searchTerm = "Nintendo"
     var gifLimit = 20;
-    var topicArr = ["Mario", "Donkey Kong", "Luigi", "Pokemon", "Zelda", "Yoshi", "Super Smash Bros", "video games", "goomba", "Princess Peach"];
+    var topicArr = ["Super Mario", "Squirtle", "Bowser", "Tetris", "Link", "Yoshi", "Super Smash Bros", "video games", "goomba", "Princess Peach"];
 
     function renderButtons() {
         //empty button div
@@ -27,8 +27,8 @@ $(document).ready(function () {
         var favorites = localStorage.getItem("favorites")
         console.log(favorites);
 
-        // favesArr = favorites.split(",")
-        // console.log(favesArr)
+        favesArr = favorites.split(",")
+        console.log(favesArr)
         // favesArr = local - split . trim
         // favesArr.split
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
                 //a remove button is rendered
                 var removeButton = $("<button>")
                 removeButton.text("remove");
-                removeButton.addClass("btn btn-danger removeButton m-2");
+                removeButton.addClass("btn btn-danger removeButton m-2 p-1");
                 removeButton.attr("data-gif", results.data.id);
                 p.append(removeButton);
 
@@ -77,6 +77,7 @@ $(document).ready(function () {
         topicArr.push(newTopic);
         renderButtons();
         $("#topic-input").val("");
+        localStorage.setItem("buttons", topicArr);
 
     });
 
@@ -87,7 +88,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < results.length; i++) {
 
-            var topicDiv = $("<div class='m-1' >");
+            var topicDiv = $("<div class='m-1 gifDiv' >");
             var p = $("<p>");
             p.text("rating: " + results[i].rating);
 
@@ -104,7 +105,7 @@ $(document).ready(function () {
             //a fave button is rendered
             var faveButton = $("<button>")
             faveButton.text("favorite");
-            faveButton.addClass("btn btn-danger faveButton m-2");
+            faveButton.addClass("btn btn-danger faveButton p-1 m-2");
             faveButton.attr("data-gif", results[i].id);
             p.append(faveButton);
 
@@ -206,10 +207,15 @@ $(document).ready(function () {
         
         var gifID = $(this).attr("data-gif");
         console.log("clicked remove" + gifID)
-       var removeIndex = favesArr.indexOf(gifID)
-       favesArr.splice(removeIndex);
+    //    var removeIndex = favesArr.indexOf(gifID)
+    //    favesArr.splice(removeIndex);
 
-    
+       var i = favesArr.indexOf(gifID);
+        if(i != -1) {
+                favesArr.splice(i, 1);
+        }
+        localStorage.setItem("favorites", favesArr);
+
        renderFaves()
 
     });

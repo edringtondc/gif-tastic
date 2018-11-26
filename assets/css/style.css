@@ -14,16 +14,23 @@ body {
     background-blend-mode: lighten;
 }
 
-/* #topicForm {
-    
-} */
+#faveTitle {
+    color: black;
+    font-weight: bold;
+}
 .gif, p {
     font-size: 18px;
     font-weight: bold;
-    color: #88ff7b;
+    color: #5e83fa;
     max-width: 200px;
+    background-color: rgba(255, 255, 255, 0.733);
+    text-align: center;
+}
+
+.removeButton, .faveButton {
     
 }
+
 
 .formDiv {
 
