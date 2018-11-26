@@ -2,7 +2,7 @@ $(document).ready(function () {
     var favesArr = []
     var searchTerm = "Nintendo"
     var gifLimit = 20;
-    var topicArr = ["Mario", "Donkey Kong", "Luigi", "Pokemon", "Zelda", "Yoshi", "Super Smash Bros"];
+    var topicArr = ["Mario", "Donkey Kong", "Luigi", "Pokemon", "Zelda", "Yoshi", "Super Smash Bros", "video games", "goomba", "Princess Peach"];
 
     function renderButtons() {
         //empty button div

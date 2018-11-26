@@ -1,12 +1,17 @@
 body {
   
-    background-color: firebrick;
+  
     background: url(../images/nintendo_background.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     color: whitesmoke;
+    background-blend-mode: lighten; 
+
+  
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: lighten;
 }
 
 /* #topicForm {
