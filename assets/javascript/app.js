@@ -40,7 +40,7 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (results) {
 
-                var faveDiv = $("<div class='m-1 gifDiv' >");
+                var faveDiv = $("<div class='m-1 p-1 gifDiv'>");
                 var p = $("<p>");
                 p.text("rating: " + results.data.rating);
                 var topicImage = $("<img>");
