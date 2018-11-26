@@ -27,9 +27,15 @@ body {
     text-align: center;
 }
 
-.removeButton, .faveButton {
-    
+.gifDiv, p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5e83fa;
+    max-width: 250px;
+    background-color: rgba(255, 255, 255, 0.733);
+    text-align: center;
 }
+
 
 
 .formDiv {

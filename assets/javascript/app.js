@@ -40,7 +40,7 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (results) {
 
-                var faveDiv = $("<div>");
+                var faveDiv = $("<div class='m-1 gifDiv' >");
                 var p = $("<p>");
                 p.text("rating: " + results.data.rating);
                 var topicImage = $("<img>");
@@ -59,7 +59,7 @@ $(document).ready(function () {
                 removeButton.attr("data-gif", results.data.id);
                 p.append(removeButton);
 
-                faveDiv.append(topicImage)
+                faveDiv.prepend(topicImage)
 
                 $("#favoriteGifs").prepend(faveDiv);
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
             faveButton.attr("data-gif", results[i].id);
             p.append(faveButton);
 
-            topicDiv.append(topicImage)
+            topicDiv.prepend(topicImage)
             $("#gifs-appear-here").prepend(topicDiv);
         }
 
