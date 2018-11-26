@@ -9,9 +9,9 @@ body {
     color: whitesmoke;
 }
 
-#topicForm {
+/* #topicForm {
     
-}
+} */
 .gif, p {
     font-size: 18px;
     font-weight: bold;
@@ -22,7 +22,7 @@ body {
 
 .formDiv {
 
-    color: greenyellow:
+    color: greenyellow;
     
 }
 
@@ -33,5 +33,5 @@ body {
 }
 #faveTitle {
     text-align: center;
-    
+
 }

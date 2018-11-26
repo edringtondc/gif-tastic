@@ -3,8 +3,6 @@ $(document).ready(function () {
     var searchTerm = "Nintendo"
     var gifLimit = 20;
     var topicArr = ["Mario", "Donkey Kong", "Luigi", "Pokemon", "Zelda", "Yoshi", "Super Smash Bros"];
-    var favorites = ""
-
 
     function renderButtons() {
         //empty button div
@@ -57,7 +55,7 @@ $(document).ready(function () {
                 //a remove button is rendered
                 var removeButton = $("<button>")
                 removeButton.text("remove");
-                removeButton.addClass("btn btn-danger faveButton m-2");
+                removeButton.addClass("btn btn-danger removeButton m-2");
                 removeButton.attr("data-gif", results.data.id);
                 p.append(removeButton);
 
@@ -201,6 +199,19 @@ $(document).ready(function () {
         localStorage.setItem("favorites", favesArr);
         console.log(favesArr);
         renderFaves();
+    });
+
+    //function to remove a favorite gif
+    $("#favoriteGifs").on("click", ".removeButton", function () {
+        
+        var gifID = $(this).attr("data-gif");
+        console.log("clicked remove" + gifID)
+       var removeIndex = favesArr.indexOf(gifID)
+       favesArr.splice(removeIndex);
+
+    
+       renderFaves()
+
     });
 });
 
