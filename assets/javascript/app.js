@@ -29,11 +29,11 @@ $(document).ready(function () {
 
         favesArr = favorites.split(",")
         console.log(favesArr)
-        // favesArr = local - split . trim
-        // favesArr.split
+
+   
 
         for (var i = 0; i < favesArr.length; i++) {
-            var faveURL = "http://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC&limit=10"
+            var faveURL = "https://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC&limit=10"
 
             $.ajax({
                 url: faveURL,
