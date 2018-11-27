@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    var favesArr = []
+
+    var favesArr = [];
     var searchTerm = "Nintendo"
     var gifLimit = 20;
     var topicArr = ["Super Mario", "Squirtle", "Bowser", "Tetris", "Link", "Yoshi", "Super Smash Bros", "video games", "goomba", "Princess Peach"];
@@ -22,48 +23,54 @@ $(document).ready(function () {
 
     function renderFaves() {
         $("#favoriteGifs").empty();
+       
 
+        if (Array.isArray(favesArr) && favesArr.length === 0) {
+            console.log("no faves saved")
+
+          
+        } else {
+            var favorites = localStorage.getItem("favorites");
+            console.log(favorites);
+
+            favesArr = favorites.split(",");
+            console.log(favesArr);
+
+            for (var i = 0; i < favesArr.length; i++) {
+                var faveURL = "https://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC"
+
+                $.ajax({
+                    url: faveURL,
+                    method: "GET"
+                }).then(function (results) {
+
+                    var faveDiv = $("<div class='row mb-1 ml-1 faveDiv'>");
+                    var p = $("<p>");
+                    p.text("rating: " + results.data.rating);
+                    var topicImage = $("<img>");
+
+                    topicImage.addClass("gif");
+                    topicImage.attr("src", results.data.images.fixed_height_still.url);
+                    topicImage.attr("data-still", results.data.images.fixed_height_still.url);
+                    topicImage.attr("data-animate", results.data.images.fixed_height.url);
+                    topicImage.attr("data-state", "still");
+                    faveDiv.append(p);
+
+                    //a remove button is rendered
+                    var removeButton = $("<button>")
+                    removeButton.text("remove");
+                    removeButton.addClass("btn btn-danger removeButton m-2 p-1");
+                    removeButton.attr("data-gif", results.data.id);
+                    p.append(removeButton);
+
+                    faveDiv.prepend(topicImage)
+
+                    $("#favoriteGifs").prepend(faveDiv);
+
+                });
+            }
         
-        var favorites = localStorage.getItem("favorites")
-        console.log(favorites);
 
-        favesArr = favorites.split(",")
-        console.log(favesArr)
-
-   
-
-        for (var i = 0; i < favesArr.length; i++) {
-            var faveURL = "https://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC&limit=10"
-
-            $.ajax({
-                url: faveURL,
-                method: "GET"
-            }).then(function (results) {
-
-                var faveDiv = $("<div class='row mb-1 ml-1 faveDiv'>");
-                var p = $("<p>");
-                p.text("rating: " + results.data.rating);
-                var topicImage = $("<img>");
-
-                topicImage.addClass("gif");
-                topicImage.attr("src", results.data.images.fixed_height_still.url);
-                topicImage.attr("data-still", results.data.images.fixed_height_still.url);
-                topicImage.attr("data-animate", results.data.images.fixed_height.url);
-                topicImage.attr("data-state", "still");
-                faveDiv.append(p);
-
-                //a remove button is rendered
-                var removeButton = $("<button>")
-                removeButton.text("remove");
-                removeButton.addClass("btn btn-danger removeButton m-2 p-1");
-                removeButton.attr("data-gif", results.data.id);
-                p.append(removeButton);
-
-                faveDiv.prepend(topicImage)
-
-                $("#favoriteGifs").prepend(faveDiv);
-
-            });
         }
     }
 
@@ -123,7 +130,7 @@ $(document).ready(function () {
 
         console.log("button clicked");
         var topic = $(this).attr("data-topic");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
             topic + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         searchTerm = topic;
@@ -204,19 +211,19 @@ $(document).ready(function () {
 
     //function to remove a favorite gif
     $("#favoriteGifs").on("click", ".removeButton", function () {
-        
+
         var gifID = $(this).attr("data-gif");
         console.log("clicked remove" + gifID)
-    //    var removeIndex = favesArr.indexOf(gifID)
-    //    favesArr.splice(removeIndex);
+        //    var removeIndex = favesArr.indexOf(gifID)
+        //    favesArr.splice(removeIndex);
 
-       var i = favesArr.indexOf(gifID);
-        if(i != -1) {
-                favesArr.splice(i, 1);
+        var i = favesArr.indexOf(gifID);
+        if (i != -1) {
+            favesArr.splice(i, 1);
         }
         localStorage.setItem("favorites", favesArr);
 
-       renderFaves()
+        renderFaves()
 
     });
 });
