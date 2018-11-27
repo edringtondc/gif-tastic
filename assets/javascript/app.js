@@ -37,7 +37,7 @@ $(document).ready(function () {
             console.log(favesArr);
 
             for (var i = 0; i < favesArr.length; i++) {
-                var faveURL = "https://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC"
+                var faveURL = "http://api.giphy.com/v1/gifs/" + favesArr[i] + "?api_key=dc6zaTOxFJmzC"
 
                 $.ajax({
                     url: faveURL,
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
         console.log("button clicked");
         var topic = $(this).attr("data-topic");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
             topic + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         searchTerm = topic;
@@ -148,7 +148,7 @@ $(document).ready(function () {
         event.preventDefault();
         console.log("add 10 clicked" + $(this));
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
             searchTerm + "&api_key=dc6zaTOxFJmzC&limit=" + gifLimit;
 
         $.ajax({
